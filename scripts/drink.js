@@ -22,9 +22,9 @@ const findDrink = async () => {
 
     Object.keys(drink).forEach(key => {
       if (key.startsWith("strIngredient") && drink[key]) {
-        let mainKey = key.replace("strIngredient", "")
+        let ingredientIndex = key.replace("strIngredient", "")
         let drinkIngredient = drink[key]
-        let drinkMeasurement = drink[`strMeasure${mainKey}`]
+        let drinkMeasurement = drink[`strMeasure${ingredientIndex}`]
         let drinkInfo = document.createElement("li")
 
         drinkInfo.textContent = `${drinkMeasurement ? `${drinkMeasurement}` : ""}${drinkIngredient ? `${drinkIngredient}` : ""}`
@@ -43,4 +43,3 @@ let drinkBtn = document.querySelector("#drink-button")
 drinkBtn.addEventListener(`click`, () => {
   findDrink()
 })
-//add info if alcoholic or not?
