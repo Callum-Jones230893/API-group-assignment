@@ -15,6 +15,7 @@ const findDrink = async () => {
     const drink = data.drinks[0]
     results.innerHTML = `
     <h2>${drink.strDrink}</h2>
+    <h3>${drink.strCategory}, ${drink.strAlcoholic}<h3>
     <img src="${drink.strDrinkThumb}">`
     
     let ingredientList = document.createElement("ul")
@@ -31,9 +32,9 @@ const findDrink = async () => {
       } 
     })
     results.appendChild(ingredientList)
-    
+
   } catch (error){
-    results.innerHTML = `<div> Please try again.</div>`
+    results.innerHTML = `<div>Please try again.</div>`
   }
 }
 
@@ -42,6 +43,4 @@ let drinkBtn = document.querySelector("#drink-button")
 drinkBtn.addEventListener(`click`, () => {
   findDrink()
 })
-
-//add category to search for if we add search function?
 //add info if alcoholic or not?
