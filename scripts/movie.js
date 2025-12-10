@@ -5,7 +5,7 @@ const findMovie = async () => {
     let searchValue = searchInput.value
     searchValue = searchValue.trim()
 
-    const url = `${apiUrl}?apikey=${apiKey}&t=${searchValue}`;
+    const movieUrl = `${apiUrl}?apikey=${apiKey}&t=${searchValue}`
 
     try {
         const response = await (fetch(url))
@@ -15,7 +15,7 @@ const findMovie = async () => {
         }
     const movie = await response.json()
 
-    if (movie.response === "True") {
+    if (movie.Response === "True") {
         console.log("movie".movie)
     }
     }
