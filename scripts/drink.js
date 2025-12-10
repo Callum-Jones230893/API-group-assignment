@@ -13,7 +13,9 @@ const findDrink = async () => {
 
       const data = await response.json()
       const drink = data.drinks[0]
-      results.innerHTML = `<h2>${drink.strDrink}</h2>`
+      results.innerHTML = `
+      <h2>${drink.strDrink}</h2>
+      <img src="${drink.strDrinkThumb}">`
       
       let ul = document.createElement("ul")
 
@@ -23,6 +25,7 @@ const findDrink = async () => {
           let drinkIngredient = drink[key]
           let drinkMeasurement = drink[`strMeasure${mainKey}`]
           let drinkInfo = document.createElement("li")
+
           drinkInfo.textContent = `${drinkMeasurement}${drinkIngredient ? `${drinkIngredient}` : ""}`
           ul.appendChild(drinkInfo)
         } 
@@ -30,8 +33,12 @@ const findDrink = async () => {
     results.appendChild(ul)
 
   } catch (error){
-    results.innerHTML = `<div class ="unlucky"> unlucky </div>`
+    results.innerHTML = `<div> Please try again.</div>`
   }
 }
 
-findDrink() 
+let drinkBtn = document.querySelector("#drink-button")
+
+drinkBtn.addEventListener(`click`, () => {
+  findDrink()
+})
