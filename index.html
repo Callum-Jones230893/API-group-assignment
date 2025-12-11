@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Movie Night</title>
-  <script src="./scripts/drink.js" defer></script>
-  <script src="./scripts/food.js"></script>
-  <script src="./scripts/movies.js" defer></script>
-  <link rel="stylesheet" href="./styles/style.css">
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Night</title>
+    <script src="./scripts/drink.js" defer></script>
+    <script src="./scripts/food.js" defer></script>
+    <script src="./scripts/movie.js" defer></script>
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <h1>Movie Night</h1>
+    <button class="button" id="movie-button">Find a movie!</button>
+    <div class="card" id="food-card">
+      <img id="food-image" />
+      <h3 class="card__title" id="food-card__title"></h3>
+      <p class="info" id="food-origin"></p>
+      <button class="info" id="read-more-btn">Read more</button>
+      <div class="info hide" id="recipe"></div>
+      <div>
+        <button class="button" id="food-button">Find your food!</button>
+      </div>
+    </div>
+    <button class="button" id="drink-button">Find your drink!</button>
+  </body>
 </html>
