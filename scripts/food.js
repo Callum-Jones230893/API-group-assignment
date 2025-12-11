@@ -53,4 +53,5 @@ readMoreBtn.onclick = () => {
 const foodBtn = document.querySelector("#food-btn");
 foodBtn.onclick = () => {
   fetchRecipes();
+  document.querySelector("#recipe").classList.add("hide");
 };
