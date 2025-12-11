@@ -15,6 +15,7 @@ const fetchRecipes = () => {
 
       document.querySelector("#food-card__title").textContent = data.meals[0].strMeal;
       document.querySelector("#food-origin").textContent = `Culinary origin: ${data.meals[0].strArea}`;
+      readMoreBtn.classList.remove("hide");
 
       const meal = data.meals[0];
       const ingredientsList = [];
@@ -44,9 +45,12 @@ const fetchRecipes = () => {
     });
 };
 
-fetchRecipes();
-
 const readMoreBtn = document.querySelector("#read-more-btn");
 readMoreBtn.onclick = () => {
   document.querySelector("#recipe").classList.toggle("hide");
+};
+
+const foodBtn = document.querySelector("#food-btn");
+foodBtn.onclick = () => {
+  fetchRecipes();
 };
