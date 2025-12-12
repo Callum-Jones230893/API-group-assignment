@@ -12,7 +12,6 @@ const findMovie = async () => {
     const movie = await response.json();
     console.log(movie.original_title);
 
-    
     let movieTitle = document.createElement("h2");
     movieTitle.textContent = movie.original_title;
     document.body.appendChild(movieTitle);
