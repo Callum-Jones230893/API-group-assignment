@@ -13,7 +13,7 @@ const findMovie = async () => {
     const movie = await response.json();
     console.log(movie.original_title);
 
-    movieCard.innerHTML = ``; 
+    movieCard.innerHTML = ``;
 
     let movieTitle = document.createElement("h2");
     movieTitle.textContent = movie.original_title;
@@ -29,12 +29,16 @@ const findMovie = async () => {
     document.querySelector("#movie-card").appendChild(synopsis);
 
     const castNames = movie.casts.map((cast) => cast.name);
+    let castList = document.createElement("ul");
+    document.querySelector("#movie-card").appendChild(castList);
 
-    let castDisplay = document.createElement("p");
-    castDisplay.textContent = castNames;
-    document.querySelector("#movie-card").appendChild(castDisplay);
+    castNames.forEach((name) => {
+      let castDisplay = document.createElement("li");
+      castDisplay.textContent = name;
+      castList.appendChild(castDisplay);
+    });
 
-    console.log(castDisplay);
+    //console.log(castDisplay);
   } catch (error) {
     console.log("Error", error);
     throw error;
