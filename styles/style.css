@@ -1,8 +1,8 @@
 :root {
-  --primary-color: #64A6BD;
-  --secondary-color: #FA8334;
-  --tertiary-color: #FFFD77;
-  --quaternary-color: #040F0F;
+  --primary-color: #64a6bd;
+  --secondary-color: #fa8334;
+  --tertiary-color: #ffffeb;
+  --quaternary-color: #040f0f;
 }
 
 * {
@@ -10,6 +10,7 @@
 }
 
 html {
+  font-family: "RedHatDisplay", Arial, Helvetica, sans-serif;
   height: 100vh;
 }
 
@@ -22,7 +23,20 @@ body {
 }
 
 button {
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 5px;
+  font-family: "RedHatDisplay";
+  margin: 8px;
+  padding: 8px;
+}
 
+.header {
+  text-align: center;
+}
+
+.header__title {
+  font-size: 3rem;
 }
 
 .main-container {
@@ -31,4 +45,39 @@ button {
 
 .hide {
   display: none;
+}
+
+.card {
+  background-color: var(--tertiary-color);
+  border-radius: 5px;
+  margin: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.btn-container {
+  text-align: center;
+}
+
+#recipe {
+  text-align: left;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    align-items: center;
+  }
+
+  .main-container {
+    display: flex;
+    flex-grow: 0;
+    justify-content: space-around;
+    width: 80%;
+  }
+
+  .card {
+    flex-grow: 1;
+    flex-wrap: wrap;
+    width: 30%;
+  }
 }
