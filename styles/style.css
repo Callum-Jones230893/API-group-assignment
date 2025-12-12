@@ -1,9 +1,32 @@
+:root {
+  --primary-color: #64A6BD;
+  --secondary-color: #FA8334;
+  --tertiary-color: #FFFD77;
+  --quaternary-color: #040F0F;
+}
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  height: 100vh;
+}
+
 body {
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   margin: 0;
+}
+
+button {
+
+}
+
+.main-container {
+  flex-grow: 1;
 }
 
 .hide {

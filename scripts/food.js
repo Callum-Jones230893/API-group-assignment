@@ -45,7 +45,7 @@ const fetchRecipes = () => {
     });
 };
 
-const readMoreBtn = document.querySelector("#food-card #read-more-btn");
+const readMoreBtn = document.querySelector("#food-read-more");
 readMoreBtn.onclick = () => {
   document.querySelector("#recipe").classList.toggle("hide");
 };
