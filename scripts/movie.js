@@ -1,5 +1,6 @@
 const apiUrl = "https://jsonfakery.com/movies/random";
 const movieDisplay = document.getElementById("movie-button");
+const movieCard = document.querySelector("#movie-card");
 
 const findMovie = async () => {
   try {
@@ -14,28 +15,22 @@ const findMovie = async () => {
 
     let movieTitle = document.createElement("h2");
     movieTitle.textContent = movie.original_title;
-    document.body.appendChild(movieTitle);
+    document.querySelector("#movie-card").appendChild(movieTitle);
 
     const imgURL = movie.poster_path;
-    let imageDisplay = document.getElementById("img");
-
-    fetch(imgURL)
-      .then((response) => response.blob())
-      .then((blob) => {
-        let img = document.createElement("img");
-        img.src = URL.createObjectURL(blob);
-        document.body.appendChild(img);
-      });
+    let imageDisplay = document.createElement("img");
+    imageDisplay.src = imgURL;
+    movieCard.appendChild(imageDisplay);
 
     let synopsis = document.createElement("p");
     synopsis.textContent = movie.overview;
-    document.body.appendChild(synopsis);
+    document.querySelector("#movie-card").appendChild(synopsis);
 
     const castNames = movie.casts.map((cast) => cast.name);
 
     let castDisplay = document.createElement("p");
     castDisplay.textContent = castNames;
-    document.body.appendChild(castDisplay);
+    document.querySelector("#movie-card").appendChild(castDisplay);
 
     console.log(castDisplay);
   } catch (error) {
@@ -44,19 +39,7 @@ const findMovie = async () => {
   }
 };
 
-findMovie();
-
-/*const showMovie = () => {
-  movieDisplay.innerHTML = "";
-
-  const title = movie.original_title;
-  const synopsis = movie.overview;
-  const poster = movie.poster_path;
-
-  const casts = movie.casts; //have to do it in a foreach-loop
-  casts.forEach((casts) => {
-    console.log(movie.casts);
-  });
-};
-
-*/
+const movieBtn = document.querySelector("#movie-btn");
+movieBtn.addEventListener("click", () => {
+  findMovie();
+});
