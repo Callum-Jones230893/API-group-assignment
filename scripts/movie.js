@@ -12,12 +12,12 @@ const findMovie = async () => {
     const movie = await response.json();
     console.log(movie.original_title);
 
+    
     let movieTitle = document.createElement("h2");
     movieTitle.textContent = movie.original_title;
     document.body.appendChild(movieTitle);
 
-    const imgURL =
-      "https://image.tmdb.org/t/p/original/nBLPIpReSatt1zcgVzSVzq5e581.jpg";
+    const imgURL = movie.poster_path;
     let imageDisplay = document.getElementById("img");
 
     fetch(imgURL)
@@ -35,11 +35,10 @@ const findMovie = async () => {
     const castNames = movie.casts.map((cast) => cast.name);
 
     let castDisplay = document.createElement("p");
-    castDisplay.textContent = "Cast";
-    castDisplay.join(", ");
+    castDisplay.textContent = castNames;
     document.body.appendChild(castDisplay);
 
-    console.log(casts);
+    console.log(castDisplay);
   } catch (error) {
     console.log("Error", error);
     throw error;
