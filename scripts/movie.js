@@ -9,10 +9,6 @@ const findMovie = async () => {
       throw new Error(`Network response was not ok`);
     }
 
-    const imgURL =
-      "https://image.tmdb.org/t/p/original/nBLPIpReSatt1zcgVzSVzq5e581.jpg";
-    let imageDisplay = document.getElementById("img");
-
     const movie = await response.json();
     console.log(movie.original_title);
 
@@ -20,17 +16,28 @@ const findMovie = async () => {
     movieTitle.textContent = movie.original_title;
     document.body.appendChild(movieTitle);
 
+    const imgURL =
+      "https://image.tmdb.org/t/p/original/nBLPIpReSatt1zcgVzSVzq5e581.jpg";
+    let imageDisplay = document.getElementById("img");
+
+    fetch(imgURL)
+      .then((response) => response.blob())
+      .then((blob) => {
+        let img = document.createElement("img");
+        img.src = URL.createObjectURL(blob);
+        document.body.appendChild(img);
+      });
+
     let synopsis = document.createElement("p");
     synopsis.textContent = movie.overview;
     document.body.appendChild(synopsis);
 
-    let casts = movie.casts;
-    casts.forEach((cast) => {
-      console.log(cast.name);
-      casts.document.createElement("p");
-      casts.textContent = movie.casts;
-      document.body.appendChild(casts);
-    });
+    const castNames = movie.casts.map((cast) => cast.name);
+
+    let castDisplay = document.createElement("p");
+    castDisplay.textContent = "Cast";
+    castDisplay.join(", ");
+    document.body.appendChild(castDisplay);
 
     console.log(casts);
   } catch (error) {
