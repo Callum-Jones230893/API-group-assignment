@@ -11,7 +11,6 @@ const fetchRecipes = () => {
 
       const image = document.querySelector("#food-image");
       image.src = data.meals[0].strMealThumb;
-      image.height = "150";
 
       document.querySelector("#food-card__title").textContent = data.meals[0].strMeal;
       document.querySelector("#food-origin").textContent = `Culinary origin: ${data.meals[0].strArea}`;
