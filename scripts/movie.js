@@ -58,3 +58,7 @@ movieBtn.addEventListener("click", () => {
 });
 
 // CLICK EVENT FOR READ MORE... BUTTON
+const readMovieBtn = document.querySelector("#movie-card #read-movie-btn");
+readMovieBtn.onclick = () => {
+  document.querySelector("#movie").classList.toggle("hide");
+};
