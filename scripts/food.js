@@ -1,3 +1,5 @@
+let foodItem;
+
 const fetchRecipes = () => {
   fetch("https://www.themealdb.com/api/json/v1/1/random.php")
     .then(response => {
@@ -16,6 +18,8 @@ const fetchRecipes = () => {
       document.querySelector("#food-card__title").textContent = data.meals[0].strMeal;
       document.querySelector("#food-origin").textContent = `Culinary origin: ${data.meals[0].strArea}`;
       readMoreBtn.classList.remove("hide");
+
+      localStorage.setItem("last food", data.meals[0].strMeal);
 
       const meal = data.meals[0];
       const ingredientsList = [];
