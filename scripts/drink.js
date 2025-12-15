@@ -11,10 +11,10 @@ const searchBtn = document.querySelector("#search-btn");
 const findDrink = async () => {
   try {
     const response = await fetch(url)
-    
+
     if (!response.ok) {
       throw new Error("Please try again later.");
-    } 
+    }
 
     const data = await response.json();
     const drink = data.drinks[0];
@@ -25,22 +25,7 @@ const findDrink = async () => {
     <h3>${drink.strCategory}, ${drink.strAlcoholic}</h3>
     <img src="${drink.strDrinkThumb}">`
 
-    ingredientDiv.classList.add("hide")
-    ingredientDiv.innerHTML = ""
-    let ingredientList = document.createElement("ul")
-
-    Object.keys(drink).forEach(key => {
-      if (key.startsWith("strIngredient") && drink[key]) {
-        let ingredientIndex = key.replace("strIngredient", "")
-        let drinkIngredient = drink[key]
-        let drinkMeasurement = drink[`strMeasure${ingredientIndex}`]
-        let drinkInfo = document.createElement("li")
-        drinkInfo.textContent = drinkMeasurement ? `${drinkMeasurement} : ${drinkIngredient}` : drinkIngredient;
-        ingredientList.appendChild(drinkInfo)
-      } 
-    })
-
-    ingredientDiv.appendChild(ingredientList); 
+    printInfo(drink)
 
   } catch (error) {
     results.innerHTML = `<div>${error.message}</div>`
@@ -51,51 +36,34 @@ const searchIngredient = async () => {
   try {
     const search = searchInput.value
     const response = await fetch(searchUrl + search)
-    
-    if (!response.ok) {
-      throw new Error("Please try again later.")
-} 
-    const data = await response.json();
-    readMoreBtn.classList.remove("hide");
-
-//randomizing
-  const randomize = async () => {
-    const randomId = Math.floor(Math.random() * data.drinks.length)
-    const drinkId = data.drinks[randomId].idDrink;
-    const randomResponse = await fetch(randomIdUrl + drinkId)
 
     if (!response.ok) {
       throw new Error("Please try again later.")
     }
+    const data = await response.json();
+    readMoreBtn.classList.remove("hide");
 
-    const randomData = await randomResponse.json();
-    console.log(randomId)
-    const drink = randomData.drinks[0];
+    //randomizing
+    const randomize = async () => {
+      const randomId = Math.floor(Math.random() * data.drinks.length)
+      const drinkId = data.drinks[randomId].idDrink;
+      const randomResponse = await fetch(randomIdUrl + drinkId)
 
-    results.innerHTML = `
-    <h2>${drink.strDrink}</h2>
-    <h3>${drink.strCategory}, ${drink.strAlcoholic}</h3>
-    <img src="${drink.strDrinkThumb}">`
-
-    ingredientDiv.classList.add("hide")
-    ingredientDiv.innerHTML = ""
-    let ingredientList = document.createElement("ul")
-
-    Object.keys(drink).forEach(key => {
-      if (key.startsWith("strIngredient") && drink[key]) {
-        let ingredientIndex = key.replace("strIngredient", "")
-        let drinkIngredient = drink[key]
-        let drinkMeasurement = drink[`strMeasure${ingredientIndex}`]
-        let drinkInfo = document.createElement("li")
-        drinkInfo.textContent = drinkMeasurement ? `${drinkMeasurement} : ${drinkIngredient}` : drinkIngredient;
-        ingredientList.appendChild(drinkInfo)
-        
+      if (!randomResponse.ok) {
+        throw new Error("Please try again later.")
       }
 
-    ingredientDiv.appendChild(ingredientList); 
+      const randomData = await randomResponse.json();
+      console.log(randomId)
+      const drink = randomData.drinks[0];
 
-    })
-  }
+      results.innerHTML = `
+      <h2>${drink.strDrink}</h2>
+      <h3>${drink.strCategory}, ${drink.strAlcoholic}</h3>
+      <img src="${drink.strDrinkThumb}">`
+
+      printInfo(drink)
+    }
     randomize()
 
   } catch (error) {
@@ -116,3 +84,21 @@ readMoreBtn.addEventListener("click", () => {
   ingredientDiv.classList.toggle("hide");
 })
 
+function printInfo(drink) {
+  ingredientDiv.classList.add("hide")
+  ingredientDiv.innerHTML = ""
+  let ingredientList = document.createElement("ul")
+
+  Object.keys(drink).forEach(key => {
+    if (key.startsWith("strIngredient") && drink[key]) {
+      let ingredientIndex = key.replace("strIngredient", "")
+      let drinkIngredient = drink[key]
+      let drinkMeasurement = drink[`strMeasure${ingredientIndex}`]
+      let drinkInfo = document.createElement("li")
+      drinkInfo.textContent = drinkMeasurement ? `${drinkMeasurement} : ${drinkIngredient}` : drinkIngredient;
+      ingredientList.appendChild(drinkInfo)
+
+    }
+  })
+  ingredientDiv.appendChild(ingredientList);
+}
