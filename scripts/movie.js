@@ -19,7 +19,7 @@ const findMovie = async () => {
     //MOVIE TITLE
     let movieTitle = document.createElement("h2");
     movieTitle.textContent = movie.original_title;
-    document.querySelector("#movie-card").appendChild(movieTitle);
+    document.querySelector("#movie-section").appendChild(movieTitle);
 
     //MOVIE POSTER
     const imgURL = movie.poster_path;
@@ -30,12 +30,12 @@ const findMovie = async () => {
     //SYNOPSIS
     let synopsis = document.createElement("p");
     synopsis.textContent = movie.overview;
-    document.querySelector("#movie-card").appendChild(synopsis);
+    document.querySelector("#movie-section").appendChild(synopsis);
 
     //CAST
     const castNames = movie.casts.map((cast) => cast.name);
     let castList = document.createElement("ul");
-    document.querySelector("#movie-card").appendChild(castList);
+    document.querySelector("#movie-section").appendChild(castList);
 
     //FOREACH DO DISPLAY THE CAST IN A LIST
     castNames.forEach((name) => {
@@ -58,7 +58,7 @@ movieBtn.addEventListener("click", () => {
 });
 
 // CLICK EVENT FOR READ MORE... BUTTON
-const readMovieBtn = document.querySelector("#movie-card #read-movie-btn");
+const readMovieBtn = document.querySelector("#movie-section #show-cast-btn");
 readMovieBtn.onclick = () => {
   document.querySelector("#movie").classList.toggle("hide");
 };
