@@ -10,11 +10,11 @@ const list = () => {
       console.log(`Categories: `, data);
 
       data.meals.forEach(item => {
-        let listItem = document.createElement("option");
-        listItem.value = item.strCategory.toLowerCase();
-        listItem.text = item.strCategory;
-        listItem.class = "list-item";
-        document.querySelector("#categoryList").appendChild(listItem);
+        let option = document.createElement("option");
+        option.value = item.strCategory.toLowerCase();
+        option.text = item.strCategory;
+        option.class = "list-item";
+        document.querySelector("#categoryList").appendChild(option);
       });
     })
     .catch(error => {
