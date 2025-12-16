@@ -2,16 +2,25 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100vh;
+}
+
 body {
+  display: flex;
+  height: 100%;
   margin: 0;
 }
 
-.footer a,
-.footer a:active,
-.footer a:visited {
+.footer {
+  text-align: center;
+}
+
+#about-us {
+  padding: 16px;
   text-decoration: none;
 }
 
-.footer a:hover {
+#about-us:hover {
   transform: scale(1.1);
 }
