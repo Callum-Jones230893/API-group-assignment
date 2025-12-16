@@ -7,8 +7,6 @@ const list = () => {
       return response.json();
     })
     .then(data => {
-      console.log(`Categories: `, data);
-
       data.meals.forEach(item => {
         let option = document.createElement("option");
         option.value = item.strCategory.toLowerCase();
@@ -22,6 +20,9 @@ const list = () => {
     });
 };
 list();
+
+const show = element => element.classList.remove("hide");
+const hide = element => element.classList.add("hide");
 
 const fetchCategory = category => {
   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
@@ -58,7 +59,6 @@ const fetchRecipes = () => {
       return response.json();
     })
     .then(data => {
-      console.log(`Food API: `, data);
       displayFood(data.meals[0]);
     })
     .catch(error => {
@@ -66,15 +66,61 @@ const fetchRecipes = () => {
     });
 };
 
+const saveFavorites = list => localStorage.setItem("Favorite foods", JSON.stringify(list));
+const getFavorites = () => JSON.parse(localStorage.getItem("Favorite foods") || "[]");
+
+const isInFavorites = mealID => {
+  const fav = getFavorites();
+  return fav.some(meal => meal.idMeal === mealID);
+};
+
+const addToFavorites = meal => {
+  const fav = getFavorites();
+
+  if (fav.some(f => f.idMeal === meal.idMeal)) {
+    return;
+  }
+
+  const favFood = {
+    idMeal: meal.idMeal,
+    name: meal.strMeal,
+  };
+
+  fav.push(favFood);
+  saveFavorites(fav);
+};
+
+const removeFromFavorites = mealID => {
+  const fav = getFavorites();
+  const updateList = fav.filter(meal => meal.idMeal !== mealID);
+  saveFavorites(updateList);
+};
+
 const displayFood = meal => {
   const image = document.querySelector("#food-image");
   image.src = meal.strMealThumb;
   image.height = "150";
 
+  const mealID = meal.idMeal;
+
   document.querySelector("#food-card__title").textContent = meal.strMeal;
   document.querySelector("#food-origin").textContent = `Culinary origin: ${meal.strArea}`;
 
-  readMoreBtn.classList.remove("hide");
+  show(readMoreBtn);
+  const favBtn = document.querySelector("#fav-btn");
+  show(favBtn);
+
+  favBtn.textContent = isInFavorites(mealID) ? "Remove from favorites" : "Add to favorites";
+
+  favBtn.onclick = () => {
+    if (isInFavorites(mealID)) {
+      removeFromFavorites(mealID);
+      favBtn.textContent = "Add to favorites";
+    } else {
+      addToFavorites(meal);
+      favBtn.textContent = "Remove from favorites";
+    }
+  };
 
   const recipe = document.querySelector("#recipe");
   recipe.innerHTML = "";
@@ -105,7 +151,7 @@ const displayFood = meal => {
   });
 };
 
-const readMoreBtn = document.querySelector("#food-card #read-more-btn");
+const readMoreBtn = document.querySelector("#food__read-more-btn");
 readMoreBtn.onclick = () => {
   document.querySelector("#recipe").classList.toggle("hide");
 };
@@ -115,12 +161,12 @@ selectCategory.addEventListener("change", e => {
   const selected = e.target.value;
   if (!selected) return;
   fetchCategory(selected);
-  document.querySelector("#recipe").classList.add("hide");
+  hide(document.querySelector("#recipe"));
 });
 
 const foodBtn = document.querySelector("#food-btn");
 foodBtn.onclick = () => {
   selectCategory.value = "";
   fetchRecipes();
-  document.querySelector("#recipe").classList.add("hide");
+  hide(document.querySelector("#recipe"));
 };
