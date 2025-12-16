@@ -8,7 +8,7 @@ const ingredientDiv = document.querySelector("#ingredient");
 const drinkBtn = document.querySelector("#drink-button");
 const searchInput = document.querySelector("#drink-search");
 const ingredientBtn = document.querySelector("#ingredient-btn");
-
+//populating the list
 window.onload = async function () {
   try {
     const response = await fetch(listUrl)
@@ -20,7 +20,7 @@ window.onload = async function () {
     const data = await response.json()
 
     data.drinks.forEach(index => {
-      const selection = this.document.createElement("option");
+      const selection = document.createElement("option");
       selection.value = index.strIngredient1;
       selection.textContent = index.strIngredient1;
       ingredientBtn.appendChild(selection)
@@ -30,7 +30,7 @@ window.onload = async function () {
     results.innerHTML = `<div>${error.message}</div>`
   }
 }
-
+//fetching first db
 const findDrink = async () => {
   try {
     const response = await fetch(url)
@@ -77,7 +77,7 @@ const searchIngredient = async () => {
       }
 
       const randomData = await randomResponse.json();
-      console.log(randomId)
+      // console.log(randomId)
       const drink = randomData.drinks[0];
 
       results.innerHTML = `
