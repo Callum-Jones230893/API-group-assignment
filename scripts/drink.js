@@ -1,12 +1,35 @@
 const url = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
 const searchUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=";
+const listUrl = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
 const randomIdUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 const results = document.querySelector("#drink");
 const readMoreBtn = document.querySelector("#read-more-btn");
 const ingredientDiv = document.querySelector("#ingredient");
 const drinkBtn = document.querySelector("#drink-button");
 const searchInput = document.querySelector("#drink-search");
-const searchBtn = document.querySelector("#search-btn");
+const ingredientBtn = document.querySelector("#ingredient-btn");
+
+window.onload = async function () {
+  try {
+    const response = await fetch(listUrl)
+
+    if (!response.ok) {
+      throw new Error("Please try again later.")
+    }
+
+    const data = await response.json()
+
+    data.drinks.forEach(index => {
+      const selection = this.document.createElement("option");
+      selection.value = index.strIngredient1;
+      selection.textContent = index.strIngredient1;
+      ingredientBtn.appendChild(selection)
+    })
+
+  } catch (error) {
+    results.innerHTML = `<div>${error.message}</div>`
+  }
+}
 
 const findDrink = async () => {
   try {
@@ -34,7 +57,7 @@ const findDrink = async () => {
 //searching for ingredient
 const searchIngredient = async () => {
   try {
-    const search = searchInput.value
+    const search = ingredientBtn.value
     const response = await fetch(searchUrl + search)
 
     if (!response.ok) {
@@ -72,7 +95,7 @@ const searchIngredient = async () => {
   }
 }
 
-searchBtn.addEventListener(`click`, () => {
+ingredientBtn.addEventListener(`change`, () => {
   searchIngredient()
 })
 
