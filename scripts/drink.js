@@ -42,7 +42,6 @@ window.onload = async function () {
   if (favoriteList.length > 0) {
   favoriteList.forEach(drink => {
   let drinkInfo = document.createElement("li")
-  // drinkInfo.classList.add("favorite-details")
   drinkInfo.textContent = drink.name
   favorited.appendChild(drinkInfo)
 
@@ -159,16 +158,10 @@ function favorite(drink) {
   const favoriteBtn = document.querySelector("#favorite-btn");
   if (!favoriteBtn) return;
 
-  favoriteBtn.textContent = isFavorite(drink.idDrink)
-    ? "Remove from Favorites"
-    : "Add to Favorites";
+  favoriteBtn.textContent = isFavorite(drink.idDrink) ? "Remove from Favorites" : "Add to Favorites";
 
-  favoriteBtn.onclick = () => {
-    toggle(drink);
-
-    favoriteBtn.textContent = isFavorite(drink.idDrink)
-      ? "Remove from Favorites"
-      : "Add to Favorites";
+  favoriteBtn.onclick = () => {toggle(drink);
+    favoriteBtn.textContent = isFavorite(drink.idDrink) ? "Remove from Favorites" : "Add to Favorites";
   };
 }
 
