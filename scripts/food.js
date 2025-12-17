@@ -1,3 +1,36 @@
+const show = element => element.classList.remove("hide");
+const hide = element => element.classList.add("hide");
+
+const saveFavorites = list => localStorage.setItem("Favorite foods", JSON.stringify(list));
+const getFavorites = () => JSON.parse(localStorage.getItem("Favorite foods") || "[]");
+
+const isInFavorites = mealID => {
+  const fav = getFavorites();
+  return fav.some(meal => meal.idMeal === mealID);
+};
+
+const addToFavorites = meal => {
+  const fav = getFavorites();
+
+  if (fav.some(f => f.idMeal === meal.idMeal)) {
+    return;
+  }
+
+  const favFood = {
+    idMeal: meal.idMeal,
+    name: meal.strMeal,
+  };
+
+  fav.push(favFood);
+  saveFavorites(fav);
+};
+
+const removeFromFavorites = mealID => {
+  const fav = getFavorites();
+  const updateList = fav.filter(meal => meal.idMeal !== mealID);
+  saveFavorites(updateList);
+};
+
 const list = () => {
   fetch("https://www.themealdb.com/api/json/v1/1/list.php?c=list")
     .then(response => {
@@ -20,9 +53,6 @@ const list = () => {
     });
 };
 list();
-
-const show = element => element.classList.remove("hide");
-const hide = element => element.classList.add("hide");
 
 const fetchCategory = category => {
   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
@@ -64,36 +94,6 @@ const fetchRecipes = () => {
     .catch(error => {
       console.error("Error: ", error);
     });
-};
-
-const saveFavorites = list => localStorage.setItem("Favorite foods", JSON.stringify(list));
-const getFavorites = () => JSON.parse(localStorage.getItem("Favorite foods") || "[]");
-
-const isInFavorites = mealID => {
-  const fav = getFavorites();
-  return fav.some(meal => meal.idMeal === mealID);
-};
-
-const addToFavorites = meal => {
-  const fav = getFavorites();
-
-  if (fav.some(f => f.idMeal === meal.idMeal)) {
-    return;
-  }
-
-  const favFood = {
-    idMeal: meal.idMeal,
-    name: meal.strMeal,
-  };
-
-  fav.push(favFood);
-  saveFavorites(fav);
-};
-
-const removeFromFavorites = mealID => {
-  const fav = getFavorites();
-  const updateList = fav.filter(meal => meal.idMeal !== mealID);
-  saveFavorites(updateList);
 };
 
 const displayFood = meal => {
