@@ -8,8 +8,48 @@ const ingredientDiv = document.querySelector("#ingredient");
 const drinkBtn = document.querySelector("#drink-button");
 const searchInput = document.querySelector("#drink-search");
 const ingredientBtn = document.querySelector("#ingredient-btn");
+const favorites = "favoriteDrink";
+const favorited = document.querySelector("#favorited-drinks")
+
+function getFavorites() {
+  return JSON.parse(localStorage.getItem(favorites)) || [];
+}
+function saveFavorite(favorite) {
+  localStorage.setItem(favorites, JSON.stringify(favorite));
+}
+function isFavorite(id) {
+  return getFavorites().some(drink => drink.id === id);
+}
+function toggle(drink) {
+  let favoriteDrink = getFavorites();
+
+if (isFavorite(drink.idDrink)) {
+  favoriteDrink = favoriteDrink.filter(fav => fav.id !== drink.idDrink);
+} else {
+  favoriteDrink.push({
+    id: drink.idDrink,
+    name: drink.strDrink
+  })
+}
+saveFavorite(favoriteDrink);
+}
+
 //populating the list
 window.onload = async function () {
+  const favoriteList = getFavorites()
+
+  if (favoriteList.length > 0) {
+  favoriteList.forEach(drink => {
+  let drinkInfo = document.createElement("li")
+  // drinkInfo.classList.add("favorite-details")
+  drinkInfo.textContent = drink.name
+  favorited.appendChild(drinkInfo)
+
+  drinkInfo.addEventListener("click", () => {
+    favoritedDrink(drink.id)
+  })
+  })
+} 
   try {
     const response = await fetch(listUrl)
 
@@ -30,6 +70,7 @@ window.onload = async function () {
     results.innerHTML = `<div>${error.message}</div>`
   }
 }
+
 //fetching first db
 const findDrink = async () => {
   try {
@@ -46,9 +87,11 @@ const findDrink = async () => {
     results.innerHTML = `
     <h2>${drink.strDrink}</h2>
     <h3>${drink.strCategory}, ${drink.strAlcoholic}</h3>
-    <img src="${drink.strDrinkThumb}">`
+    <img src="${drink.strDrinkThumb}">
+    <button id="favorite-btn"></button>`
 
     printInfo(drink)
+    favorite(drink);
 
   } catch (error) {
     results.innerHTML = `<div>${error.message}</div>`
@@ -83,11 +126,14 @@ const searchIngredient = async () => {
       results.innerHTML = `
       <h2>${drink.strDrink}</h2>
       <h3>${drink.strCategory}, ${drink.strAlcoholic}</h3>
-      <img src="${drink.strDrinkThumb}">`
+      <img src="${drink.strDrinkThumb}">
+      <button id="favorite-btn"></button>`
 
       printInfo(drink)
+      favorite(drink);
     }
-    randomize()
+    randomize();
+
 
   } catch (error) {
     results.innerHTML = `<div>${error.message}</div>`
@@ -106,6 +152,49 @@ drinkBtn.addEventListener(`click`, () => {
 readMoreBtn.addEventListener("click", () => {
   ingredientDiv.classList.toggle("hide");
 })
+
+function favorite(drink) {
+  const favoriteBtn = document.querySelector("#favorite-btn");
+  if (!favoriteBtn) return;
+
+  favoriteBtn.textContent = isFavorite(drink.idDrink)
+    ? "Remove from Favorites"
+    : "Add to Favorites";
+
+  favoriteBtn.onclick = () => {
+    toggle(drink);
+
+    favoriteBtn.textContent = isFavorite(drink.idDrink)
+      ? "Remove from Favorites"
+      : "Add to Favorites";
+  };
+}
+
+const favoritedDrink = async (id) => {
+  try {
+    const response = await fetch(randomIdUrl + id)
+
+    if (!response.ok) {
+      throw new Error("Please try again later.");
+    }
+
+    const data = await response.json();
+    const drink = data.drinks[0];
+    readMoreBtn.classList.remove("hide");
+
+    results.innerHTML = `
+    <h2>${drink.strDrink}</h2>
+    <h3>${drink.strCategory}, ${drink.strAlcoholic}</h3>
+    <img src="${drink.strDrinkThumb}">
+    <button id="favorite-btn"></button>`
+
+    printInfo(drink)
+    favorite(drink);
+
+  } catch (error) {
+    results.innerHTML = `<div>${error.message}</div>`
+  }
+}
 
 function printInfo(drink) {
   ingredientDiv.classList.add("hide")
