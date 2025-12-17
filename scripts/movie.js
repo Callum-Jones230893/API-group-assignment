@@ -20,15 +20,16 @@ const findMovie = async () => {
     const movie = await response.json();
     console.log(movie.original_title);
 
-    movieResultsDiv.innerHTML = ``; //fixed fetching bug with this. content wasn't loading, had to clear the html in between
+    movieCard.innerHTML = ``; //fixed fetching bug with this. content wasn't loading, had to clear the html in between
     castDiv.innerHTML = ``;
     imgContainer.innerHTML = ``;
     showCastBtn.classList.remove("hide");
+    castDiv.classList.add("hide");
 
     //MOVIE TITLE
     let movieTitle = document.createElement("h2");
     movieTitle.textContent = movie.original_title;
-    movieResultsDiv.appendChild(movieTitle);
+    movieCard.appendChild(movieTitle);
 
     //MOVIE POSTER
     const imgURL = movie.poster_path;
@@ -40,15 +41,14 @@ const findMovie = async () => {
     //SYNOPSIS
     let synopsis = document.createElement("p");
     synopsis.textContent = movie.overview;
-    movieResultsDiv.appendChild(synopsis);
+    movieCard.appendChild(synopsis);
 
-    movieResultsDiv.appendChild(showCastBtn); //button here so it's underneth the synopsis
+    movieCard.appendChild(showCastBtn); //button here so it's underneth the synopsis
 
     //CAST BUTTON
     const castNames = movie.casts.map((cast) => cast.name);
     let castList = document.createElement("ul");
     castDiv.appendChild(castList);
-    // document.querySelector("#cast").appendChild(castList);
 
     //FOREACH DO DISPLAY THE CAST IN A LIST
     castNames.forEach((name) => {
