@@ -5,6 +5,7 @@ const randomIdUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 const results = document.querySelector("#drink");
 const readMoreBtn = document.querySelector("#read-more-btn");
 const ingredientDiv = document.querySelector("#ingredient");
+const section = document.querySelector("#drink-section")
 const drinkBtn = document.querySelector("#drink-button");
 const searchInput = document.querySelector("#drink-search");
 const ingredientBtn = document.querySelector("#ingredient-btn");
@@ -46,6 +47,7 @@ window.onload = async function () {
   favorited.appendChild(drinkInfo)
 
   drinkInfo.addEventListener("click", () => {
+    section.classList.toggle("hide")
     favoritedDrink(drink.id)
   })
   })
