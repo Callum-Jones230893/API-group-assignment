@@ -12,3 +12,11 @@ li {
 li:hover {
   color: var(--secondary-color);
 }
+
+.ingredient-info li {
+  font-weight: normal;
+}  
+
+.ingredient-info li:hover {
+  color: black;
+}

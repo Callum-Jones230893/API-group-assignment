@@ -9,7 +9,20 @@
   <link rel="stylesheet" href="./styles/favDrinks.css">
 </head>
 <body>
-  <h3 class="title">Your Favorited Drinks</h3>
+  <header class="header">
+    <h1 class="header__title">&#128253; Flick & Feast Roulette &#127871;</h1>
+    <div class="nav-bar">
+      <p><a href="./index.html">Home</a>
+      <p><a class="active" href="./favoriteDrinks.html">Favorite Drinks</a></p>
+      <p><a href="./favFood">Favorite Food</a></p>
+      <p><a href="./about.html">About Us</a></p>
+    </div>
+    <h4 class="intro">
+      Need help planning a movie night? We got you. Pick a food, a drink, and a movie with this randomizer for a
+      decision-fatigue-free night in.
+    </h4>
+    <h3 class="tagline">Your favorite drinks!</h3>
+  </header>
   <div class="drink-section card">
     <ul class="favorited" id="favorited-drinks"></ul>
     <div class="hide" id="drink-section">
@@ -18,7 +31,8 @@
         <option value="">Search for an ingredient</option>
       </select>
       <div class="results" id="drink"></div>
-      <button id="read-more-btn" class="hide">Show ingredients</button>
+      <button class="hide" id="read-more-btn">Show ingredients</button>
+      <button class="hide" id="fav-drink-btn">Add to Favorites</button>
       <div id="ingredient" class="hide"></div>
     </div>
   </div>

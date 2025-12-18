@@ -11,6 +11,8 @@ const searchInput = document.querySelector("#drink-search");
 const ingredientBtn = document.querySelector("#ingredient-btn");
 const favorites = "favoriteDrink";
 const favorited = document.querySelector("#favorited-drinks")
+const favoriteBtn = document.querySelector("#fav-drink-btn")
+
 let currentFavorite = null;
 
 function getFavoritesDrink() {
@@ -38,7 +40,7 @@ saveFavorite(favoriteDrink);
 
 //populating the list
 window.onload = async function () {
-  const favoriteList = getFavoritesDrink()
+  const favoriteList = getFavoritesDrink();
 
   if (favoriteList.length === 0) {
     favorited.innerHTML = "<li>No favorite drinks yet</li>";
@@ -47,9 +49,9 @@ window.onload = async function () {
 
   if (favoriteList.length > 0) {
     favoriteList.forEach(drink => {
-      let drinkInfo = document.createElement("li")
-      drinkInfo.classList.add(`${drink.id}`)
-      drinkInfo.textContent = drink.name
+      let drinkInfo = document.createElement("li");
+      drinkInfo.classList.add(`${drink.id}`);
+      drinkInfo.textContent = drink.name;
       drinkInfo.style.cursor = "pointer";
       favorited?.appendChild(drinkInfo)
 
@@ -66,19 +68,19 @@ window.onload = async function () {
     })
   } 
   try {
-    const response = await fetch(listUrl)
+    const response = await fetch(listUrl);
 
     if (!response.ok) {
-      throw new Error("Please try again later.")
+      throw new Error("Please try again later.");
     }
 
-    const data = await response.json()
+    const data = await response.json();
 
     data.drinks.forEach(index => {
       const selection = document.createElement("option");
       selection.value = index.strIngredient1;
       selection.textContent = index.strIngredient1;
-      ingredientBtn.appendChild(selection)
+      ingredientBtn.appendChild(selection);
     })
 
   } catch (error) {
@@ -98,40 +100,41 @@ const findDrink = async () => {
     const data = await response.json();
     const drink = data.drinks[0];
     readMoreBtnDrink.classList.remove("hide");
+    favoriteBtn.classList.remove("hide");
 
     results.innerHTML = `
     <img src="${drink.strDrinkThumb}">
     <h3>${drink.strDrink}</h3>
-    <p>${drink.strCategory}, ${drink.strAlcoholic}</p>
-    <button class="fav-btn">Add to Favorites</button>`
+    <p>${drink.strCategory}, ${drink.strAlcoholic}</p>`
 
-    printInfo(drink)
+    printInfo(drink);
     favorite(drink);
 
   } catch (error) {
-    results.innerHTML = `<div>${error.message}</div>`
+    results.innerHTML = `<div>${error.message}</div>`;
   }
 }
 //searching for ingredient
 const searchIngredient = async () => {
   try {
-    const search = ingredientBtn.value
-    const response = await fetch(searchUrl + search)
+    const search = ingredientBtn.value;
+    const response = await fetch(searchUrl + search);
 
     if (!response.ok) {
-      throw new Error("Please try again later.")
+      throw new Error("Please try again later.");
     }
     const data = await response.json();
     readMoreBtnDrink.classList.remove("hide");
+    favoriteBtn.classList.remove("hide");
 
     //randomizing
     const randomize = async () => {
-      const randomId = Math.floor(Math.random() * data.drinks.length)
+      const randomId = Math.floor(Math.random() * data.drinks.length);
       const drinkId = data.drinks[randomId].idDrink;
-      const randomResponse = await fetch(randomIdUrl + drinkId)
+      const randomResponse = await fetch(randomIdUrl + drinkId);
 
       if (!randomResponse.ok) {
-        throw new Error("Please try again later.")
+        throw new Error("Please try again later.");
       }
 
       const randomData = await randomResponse.json();
@@ -141,10 +144,9 @@ const searchIngredient = async () => {
       results.innerHTML = `
       <img src="${drink.strDrinkThumb}">
       <h3>${drink.strDrink}</h2>
-      <p>${drink.strCategory}, ${drink.strAlcoholic}</p>
-      <button class="fav-btn">Add to Favorites</button>`
+      <p>${drink.strCategory}, ${drink.strAlcoholic}</p>`
 
-      printInfo(drink)
+      printInfo(drink);
       favorite(drink);
     }
     randomize();
@@ -152,16 +154,16 @@ const searchIngredient = async () => {
 
   } catch (error) {
     results.innerHTML = `<div>${error.message}</div>`
-    console.log(error)
+    console.log(error);
   }
 }
 
 ingredientBtn.addEventListener(`change`, () => {
-  searchIngredient()
+  searchIngredient();
 })
 
 drinkBtn.addEventListener(`click`, () => {
-  findDrink()
+  findDrink();
 })
 
 readMoreBtnDrink.addEventListener("click", () => {
@@ -169,7 +171,7 @@ readMoreBtnDrink.addEventListener("click", () => {
 })
 
 function favorite(drink) {
-  const favoriteBtn = document.querySelector(".fav-btn");
+  const favoriteBtn = document.querySelector("#fav-drink-btn");
   if (!favoriteBtn) return;
 
   favoriteBtn.textContent = isFavorite(drink.idDrink) ? "Remove from Favorites" : "Add to Favorites";
@@ -189,34 +191,35 @@ const favoritedDrink = async (id) => {
     const data = await response.json();
     const drink = data.drinks[0];
     readMoreBtnDrink.classList.remove("hide");
+    favoriteBtn.classList.remove("hide");
 
     results.innerHTML = `
     <img src="${drink.strDrinkThumb}">
     <h3>${drink.strDrink}</h2>
-    <p>${drink.strCategory}, ${drink.strAlcoholic}</p>
-    <button class="fav-btn">Add to Favorites</button>`
+    <p>${drink.strCategory}, ${drink.strAlcoholic}</p>`
 
-    printInfo(drink)
+    printInfo(drink);
     favorite(drink);
 
   } catch (error) {
-    results.innerHTML = `<div>${error.message}</div>`
+    results.innerHTML = `<div>${error.message}</div>`;
   }
 }
 
 function printInfo(drink) {
-  ingredientDiv.classList.add("hide")
-  ingredientDiv.innerHTML = ""
-  let ingredientList = document.createElement("ul")
+  ingredientDiv.classList.add("hide");
+  ingredientDiv.innerHTML = "";
+  let ingredientList = document.createElement("ul");
+  ingredientList.classList.add("ingredient-info");
 
   Object.keys(drink).forEach(key => {
     if (key.startsWith("strIngredient") && drink[key]) {
-      let ingredientIndex = key.replace("strIngredient", "")
-      let drinkIngredient = drink[key]
+      let ingredientIndex = key.replace("strIngredient", "");
+      let drinkIngredient = drink[key];
       let drinkMeasurement = drink[`strMeasure${ingredientIndex}`]
-      let drinkInfo = document.createElement("li")
+      let drinkInfo = document.createElement("li");
       drinkInfo.textContent = drinkMeasurement ? `${drinkMeasurement} : ${drinkIngredient}` : drinkIngredient;
-      ingredientList.appendChild(drinkInfo)
+      ingredientList.appendChild(drinkInfo);
 
     }
   })
