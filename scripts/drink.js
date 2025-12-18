@@ -51,8 +51,12 @@ window.onload = async function () {
       drinkInfo.style.cursor = "pointer";
       favorited?.appendChild(drinkInfo)
       drinkInfo.addEventListener("click", () => {
-        section.classList.toggle("hide")
-        favoritedDrink(drink.id)
+        if (section.classList.contains("hide") === true){
+        section.classList.remove("hide");
+      } else {
+        section.classList.add("hide")
+        favoritedDrink(drink.id);
+        }
       })
     })
   } 
