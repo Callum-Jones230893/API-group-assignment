@@ -27,50 +27,53 @@ const findMovie = async () => {
     showCastBtn.classList.remove("hide");
     castDiv.classList.add("hide");
 
-    //MOVIE TITLE
+    //  MOVIE TITLE
     let movieTitle = document.createElement("h2");
     movieTitle.textContent = movie.original_title;
     movieCard.appendChild(movieTitle);
 
-    //MOVIE POSTER
+    //  MOVIE YEAR
+    let movieYear = document.createElement("h3");
+    movieYear.textContent = movie.release_date;
+    movieCard.appendChild(movieYear);
+
+    //  MOVIE POSTER
     const imgURL = movie.poster_path;
     let imageDisplay = document.createElement("img");
     imageDisplay.src = imgURL;
     movieCard.appendChild(imgContainer);
     imgContainer.appendChild(imageDisplay);
 
-    //SYNOPSIS
+    //  SYNOPSIS
     let synopsis = document.createElement("p");
     synopsis.textContent = movie.overview;
     movieCard.appendChild(synopsis);
 
     movieCard.appendChild(showCastBtn); //button here so it's underneth the synopsis
 
-    //CAST BUTTON
+    //  CAST BUTTON
     const castNames = movie.casts.map((cast) => cast.name);
     let castList = document.createElement("ul");
     castDiv.appendChild(castList);
 
-    //FOREACH DO DISPLAY THE CAST IN A LIST
+    //  FOREACH DO DISPLAY THE CAST IN A LIST
     castNames.forEach((name) => {
       let castDisplay = document.createElement("li");
       castDisplay.textContent = name;
       castList.appendChild(castDisplay);
     });
-
-    //console.log(castDisplay);
   } catch (error) {
     console.log("Error", error);
     throw error;
   }
 };
 
-//CLICK EVENT FOR MOVIE BUTTON
+//  CLICK EVENT FOR MOVIE BUTTON
 movieBtn.addEventListener("click", () => {
   findMovie();
 });
 
-// CLICK EVENT FOR READ MORE... BUTTON
+//  CLICK EVENT FOR READ MORE... BUTTON LOGIC
 showCastBtn.onclick = () => {
   if (castDiv.classList.toggle("hide")) {
     showCastBtn.textContent = "Show Cast";
