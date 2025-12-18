@@ -1,12 +1,12 @@
 const apiUrl = "https://jsonfakery.com/movies/random";
-const movieDisplay = document.getElementById("movie-btn");
-const movieCard = document.getElementById("movie-section");
 const castDiv = document.getElementById("cast");
+const movieCard = document.getElementById("movie-section");
+const movieDisplay = document.getElementById("movie-btn");
 
 const movieBtn = document.querySelector("#movie-btn");
 const showCastBtn = document.querySelector("#show-cast-btn");
-const movieResultsDiv = document.querySelector("#movie");
 const imgContainer = document.querySelector(".img-container");
+const movieResultsDiv = document.querySelector("#movie");
 
 //FUNCTION FOR SHOWING THE MOVIE
 const findMovie = async () => {
