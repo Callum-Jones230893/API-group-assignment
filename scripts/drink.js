@@ -11,6 +11,7 @@ const searchInput = document.querySelector("#drink-search");
 const ingredientBtn = document.querySelector("#ingredient-btn");
 const favorites = "favoriteDrink";
 const favorited = document.querySelector("#favorited-drinks")
+let currentFavorite = null;
 
 function getFavoritesDrink() {
   return JSON.parse(localStorage.getItem(favorites)) || [];
@@ -47,15 +48,19 @@ window.onload = async function () {
   if (favoriteList.length > 0) {
     favoriteList.forEach(drink => {
       let drinkInfo = document.createElement("li")
+      drinkInfo.classList.add(`${drink.id}`)
       drinkInfo.textContent = drink.name
       drinkInfo.style.cursor = "pointer";
       favorited?.appendChild(drinkInfo)
-      drinkInfo.addEventListener("click", () => {
-        if (section.classList.contains("hide") === true){
-        section.classList.remove("hide");
+
+      drinkInfo.addEventListener("click", (e) => {
+        if (currentFavorite === drink.id) {
+        section.classList.add("hide");
+        currentFavorite = null;
       } else {
-        section.classList.add("hide")
+        section.classList.remove("hide")
         favoritedDrink(drink.id);
+        currentFavorite = drink.id;
         }
       })
     })
