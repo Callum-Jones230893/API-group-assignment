@@ -23,6 +23,7 @@ const findMovie = async () => {
     movieCard.innerHTML = ``; //fixed fetching bug with this. content wasn't loading, had to clear the html in between
     castDiv.innerHTML = ``;
     imgContainer.innerHTML = ``;
+    showCastBtn.textContent = "Show Cast";
     showCastBtn.classList.remove("hide");
     castDiv.classList.add("hide");
 
@@ -71,5 +72,9 @@ movieBtn.addEventListener("click", () => {
 
 // CLICK EVENT FOR READ MORE... BUTTON
 showCastBtn.onclick = () => {
-  castDiv.classList.toggle("hide");
+  if (castDiv.classList.toggle("hide")) {
+    showCastBtn.textContent = "Show Cast";
+  } else {
+    showCastBtn.textContent = "Hide Cast";
+  }
 };
