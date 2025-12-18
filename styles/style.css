@@ -57,6 +57,7 @@ li {
   border-radius: 35px;
   box-shadow: 5px 5px 10px var(--quaternary-color);
   margin: 8px;
+  min-width: 300px;
   padding: 16px;
   text-align: center;
 }
