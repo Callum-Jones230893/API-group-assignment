@@ -85,10 +85,10 @@ const findDrink = async () => {
     readMoreBtnDrink.classList.remove("hide");
 
     results.innerHTML = `
-    <h2>${drink.strDrink}</h2>
-    <h3>${drink.strCategory}, ${drink.strAlcoholic}</h3>
     <img src="${drink.strDrinkThumb}">
-    <button id="favorite-btn"></button>`
+    <h3>${drink.strDrink}</h3>
+    <p>${drink.strCategory}, ${drink.strAlcoholic}</p>
+    <button class="fav-btn">Add to Favorites</button>`
 
     printInfo(drink)
     favorite(drink);
@@ -124,10 +124,10 @@ const searchIngredient = async () => {
       const drink = randomData.drinks[0];
 
       results.innerHTML = `
-      <h2>${drink.strDrink}</h2>
-      <h3>${drink.strCategory}, ${drink.strAlcoholic}</h3>
       <img src="${drink.strDrinkThumb}">
-      <button id="favorite-btn"></button>`
+      <h3>${drink.strDrink}</h2>
+      <p>${drink.strCategory}, ${drink.strAlcoholic}</p>
+      <button class="fav-btn">Add to Favorites</button>`
 
       printInfo(drink)
       favorite(drink);
@@ -154,11 +154,10 @@ readMoreBtnDrink.addEventListener("click", () => {
 })
 
 function favorite(drink) {
-  const favoriteBtn = document.querySelector("#favorite-btn");
+  const favoriteBtn = document.querySelector(".fav-btn");
   if (!favoriteBtn) return;
 
   favoriteBtn.textContent = isFavorite(drink.idDrink) ? "Remove from Favorites" : "Add to Favorites";
-
   favoriteBtn.onclick = () => {toggle(drink);
     favoriteBtn.textContent = isFavorite(drink.idDrink) ? "Remove from Favorites" : "Add to Favorites";
   };
@@ -177,10 +176,10 @@ const favoritedDrink = async (id) => {
     readMoreBtnDrink.classList.remove("hide");
 
     results.innerHTML = `
-    <h2>${drink.strDrink}</h2>
-    <h3>${drink.strCategory}, ${drink.strAlcoholic}</h3>
     <img src="${drink.strDrinkThumb}">
-    <button id="favorite-btn"></button>`
+    <h3>${drink.strDrink}</h2>
+    <p>${drink.strCategory}, ${drink.strAlcoholic}</p>
+    <button class="fav-btn">Add to Favorites</button>`
 
     printInfo(drink)
     favorite(drink);

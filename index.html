@@ -11,30 +11,34 @@
 </head>
 <body>
   <h1>Movie Night</h1>
-    <button class="button" id="movie-button">Find a movie!</button>
-    <div class="card" id="food-card">
-      <div id="btn-container">
-        <button class="button" id="food-btn">Find a random food!</button>
-      </div>
-      <div class="search-bar">
-        <select name="category" id="categoryList">
-          <option value="">Choose a category</option>
-        </select>
-      </div>
-      <img id="food-image" />
-      <h3 class="card__title" id="food-card__title"></h3>
-      <p class="info" id="food-origin"></p>
-      <button class="info hide" id="food__read-more-btn">Read more</button>
-      <button class="info hide" id="fav-btn">Add to favorites</button>
-      <div class="info hide" id="recipe"></div>
+  <button class="button" id="movie-button">Find a movie!</button>
+  
+  <div class="card" id="food-card">
+    <div id="btn-container">
+      <button class="button" id="food-btn">Find a random food!</button>
     </div>
-  <div class="drink-section">
+    <div class="search-bar">
+      <select name="category" id="categoryList">
+        <option value="">Choose a category</option>
+      </select>
+    </div>
+    <img id="food-image" />
+    <h3 class="card__title" id="food-card__title"></h3>
+    <p class="info" id="food-origin"></p>
+    <button class="info hide" id="food__read-more-btn">Read more</button>
+    <button class="info hide" id="fav-btn">Add to favorites</button>
+    <div class="info hide" id="recipe"></div>
+  </div>
+
+  <div class="card drink-section">
+    <div id="btn-container">
     <button class="button" id="drink-button">Find your drink!</button>
-    <select id="ingredient-btn">
+    </div>
+    <select name="category" id="ingredient-btn">
       <option value="">Search for an ingredient</option>
     </select>
     <div class="results" id="drink"></div>
-    <button id="read-more-btn" class="hide">Show ingredients</button>
+    <button id="read-more-btn" class="hide">Read more</button>
   <div id="ingredient" class="hide"></div>
 </body>
 </html>
