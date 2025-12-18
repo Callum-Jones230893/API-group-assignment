@@ -39,10 +39,16 @@ saveFavorite(favoriteDrink);
 window.onload = async function () {
   const favoriteList = getFavoritesDrink()
 
+  if (favoriteList.length === 0) {
+    favorited.innerHTML = "<li>No favorite drinks yet</li>";
+    return;
+  }
+
   if (favoriteList.length > 0) {
     favoriteList.forEach(drink => {
       let drinkInfo = document.createElement("li")
       drinkInfo.textContent = drink.name
+      drinkInfo.style.cursor = "pointer";
       favorited?.appendChild(drinkInfo)
       drinkInfo.addEventListener("click", () => {
         section.classList.toggle("hide")

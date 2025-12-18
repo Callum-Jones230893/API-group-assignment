@@ -31,16 +31,35 @@ button {
   padding: 8px;
 }
 
-li {
-  list-style: none;
+.header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  padding-bottom: 28px;
 }
 
-.header {
-  text-align: center;
+.intro, .tagline {
+  display: none;
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  box-shadow: 0 0 20px 5px var(--secondary-color);
+  color: var(--quaternary-color);
+}
+
+.nav-bar {
+  display: flex;
+  gap: 2rem;
 }
 
 .header__title {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .main-container {
@@ -64,6 +83,10 @@ li {
 
 .btn-container {
   text-align: center;
+}
+
+li {
+  list-style: none;
 }
 
 #food-image {
@@ -100,6 +123,14 @@ li {
     display: flex;
     justify-content: space-around;
     width: 80%;
+  }
+  
+  .header__title {
+    font-size: 3rem;
+  }
+
+  .intro, .tagline{
+    display: block;
   }
 
   .card {
