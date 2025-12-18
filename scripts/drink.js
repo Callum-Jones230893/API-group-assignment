@@ -3,7 +3,7 @@ const searchUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=";
 const listUrl = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
 const randomIdUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 const results = document.querySelector("#drink");
-const readMoreBtn = document.querySelector("#read-more-btn");
+const readMoreBtnDrink = document.querySelector("#read-more-btn");
 const ingredientDiv = document.querySelector("#ingredient");
 const section = document.querySelector("#drink-section")
 const drinkBtn = document.querySelector("#drink-button");
@@ -12,17 +12,17 @@ const ingredientBtn = document.querySelector("#ingredient-btn");
 const favorites = "favoriteDrink";
 const favorited = document.querySelector("#favorited-drinks")
 
-function getFavorites() {
+function getFavoritesDrink() {
   return JSON.parse(localStorage.getItem(favorites)) || [];
 }
 function saveFavorite(favorite) {
   localStorage.setItem(favorites, JSON.stringify(favorite));
 }
 function isFavorite(id) {
-  return getFavorites().some(drink => drink.id === id);
+  return getFavoritesDrink().some(drink => drink.id === id);
 }
 function toggle(drink) {
-  let favoriteDrink = getFavorites();
+  let favoriteDrink = getFavoritesDrink();
 
 if (isFavorite(drink.idDrink)) {
   favoriteDrink = favoriteDrink.filter(fav => fav.id !== drink.idDrink);
@@ -37,20 +37,19 @@ saveFavorite(favoriteDrink);
 
 //populating the list
 window.onload = async function () {
-  const favoriteList = getFavorites()
+  const favoriteList = getFavoritesDrink()
 
   if (favoriteList.length > 0) {
-  favoriteList.forEach(drink => {
-  let drinkInfo = document.createElement("li")
-  drinkInfo.textContent = drink.name
-  favorited.appendChild(drinkInfo)
-
-  drinkInfo.addEventListener("click", () => {
-    section.classList.toggle("hide")
-    favoritedDrink(drink.id)
-  })
-  })
-} 
+    favoriteList.forEach(drink => {
+      let drinkInfo = document.createElement("li")
+      drinkInfo.textContent = drink.name
+      favorited?.appendChild(drinkInfo)
+      drinkInfo.addEventListener("click", () => {
+        section.classList.toggle("hide")
+        favoritedDrink(drink.id)
+      })
+    })
+  } 
   try {
     const response = await fetch(listUrl)
 
@@ -83,7 +82,7 @@ const findDrink = async () => {
 
     const data = await response.json();
     const drink = data.drinks[0];
-    readMoreBtn.classList.remove("hide");
+    readMoreBtnDrink.classList.remove("hide");
 
     results.innerHTML = `
     <h2>${drink.strDrink}</h2>
@@ -108,7 +107,7 @@ const searchIngredient = async () => {
       throw new Error("Please try again later.")
     }
     const data = await response.json();
-    readMoreBtn.classList.remove("hide");
+    readMoreBtnDrink.classList.remove("hide");
 
     //randomizing
     const randomize = async () => {
@@ -150,7 +149,7 @@ drinkBtn.addEventListener(`click`, () => {
   findDrink()
 })
 
-readMoreBtn.addEventListener("click", () => {
+readMoreBtnDrink.addEventListener("click", () => {
   ingredientDiv.classList.toggle("hide");
 })
 
@@ -175,7 +174,7 @@ const favoritedDrink = async (id) => {
 
     const data = await response.json();
     const drink = data.drinks[0];
-    readMoreBtn.classList.remove("hide");
+    readMoreBtnDrink.classList.remove("hide");
 
     results.innerHTML = `
     <h2>${drink.strDrink}</h2>
