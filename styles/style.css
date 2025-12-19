@@ -89,21 +89,14 @@ a:hover {
   text-align: center;
 }
 
-#food-image {
+img {
   border-radius: 30px;
   box-shadow: 5px 5px 10px var(--quaternary-color);
   height: auto;
   width: 250px;
 }
 
-.drink-section img {
-  border-radius: 30px;
-  box-shadow: 5px 5px 10px var(--quaternary-color);
-  height: auto;
-  width: 250px;
-}
-
-.ingredient-list {
+.ingredient-list, .cast-list {
   text-align: left;
 }
 
