@@ -1,9 +1,9 @@
 :root {
   --primary-color: #070c18;
-  --secondary-color: #E5E7EB;
+  --secondary-color: #e5e7eb;
   --tertiary-color: #ef626c;
-  --quaternary-color: #C3434C;
-  --quinary-color: #38BDF8;
+  --quaternary-color: #c3434c;
+  --quinary-color: #38bdf8;
 }
 
 * {
@@ -32,32 +32,17 @@ button {
   padding: 8px;
 }
 
+button:hover {
+  color: var(--quinary-color);
+  cursor: pointer;
+}
+
 .header {
   align-items: center;
   color: var(--quinary-color);
   display: flex;
   flex-direction: column;
-  height: 300px;
-  padding-bottom: 28px;
-}
-
-.active {
-  color: white;
-}
-
-.intro,
-.tagline {
-  display: none;
-}
-
-a {
-  color: var(--secondary-color);
-  text-decoration: none;
-}
-
-a:hover {
-  box-shadow: 0 0 20px 5px var(--secondary-color);
-  color: var(--quaternary-color);
+  padding-bottom: 16px;
 }
 
 .nav-bar {
@@ -67,6 +52,26 @@ a:hover {
 
 .header__title {
   font-size: 2rem;
+}
+
+.active {
+  color: var(--tertiary-color);
+}
+
+.intro,
+.tagline {
+  color: var(--quinary-color);
+  margin: 8px;
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--quinary-color);
+  text-shadow: 0 0 6px var(--secondary-color), 0 0 12px var(--secondary-color), 0 0 20px var(--secondary-color);
 }
 
 .main-container {
@@ -83,13 +88,21 @@ a:hover {
   border-radius: 35px;
   box-shadow: 5px 5px 10px var(--quaternary-color);
   margin: 8px;
-  min-width: 300px;
   padding: 16px;
   text-align: center;
 }
 
 .btn-container {
   text-align: center;
+}
+
+select {
+  border: none;
+  border-radius: 5px;
+  font-family: "RedHatDisplay", Arial, Helvetica, sans-serif;
+  margin: 8px;
+  padding: 4px;
+  width: 80%;
 }
 
 img {
@@ -109,6 +122,7 @@ img {
 }
 
 .footer {
+  color: var(--secondary-color);
   margin: 16px;
   padding: 8px;
   text-align: center;
@@ -121,11 +135,6 @@ img {
 
   .header__title {
     font-size: 3rem;
-  }
-
-  .card__wrapper {
-    display: flex;
-    justify-content: space-evenly;
   }
 
   .main-container {
@@ -141,7 +150,7 @@ img {
   }
 
   .card {
-    flex-wrap: wrap;
-    flex: 0 1 30%;
+    flex: 0 0 30%;
+    min-height: 200px;
   }
 }
