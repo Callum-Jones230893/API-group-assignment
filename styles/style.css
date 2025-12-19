@@ -1,0 +1,149 @@
+:root {
+  --primary-color: #64a6bd;
+  --secondary-color: #fa8334;
+  --tertiary-color: #ffffeb;
+  --quaternary-color: #040f0f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "RedHatDisplay", Arial, Helvetica, sans-serif;
+  height: 100vh;
+}
+
+body {
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+}
+
+button {
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 5px;
+  font-family: "RedHatDisplay";
+  margin: 8px;
+  padding: 8px;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  padding-bottom: 28px;
+}
+
+.active {
+  color: white;
+}
+
+.intro, .tagline {
+  display: none;
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  box-shadow: 0 0 20px 5px var(--secondary-color);
+  color: var(--quaternary-color);
+}
+
+.nav-bar {
+  display: flex;
+  gap: 2rem;
+}
+
+.header__title {
+  font-size: 2rem;
+}
+
+.main-container {
+  flex-grow: 1;
+  padding: 16px;
+}
+
+.hide {
+  display: none;
+}
+
+.card {
+  background-color: var(--tertiary-color);
+  border-radius: 35px;
+  box-shadow: 5px 5px 10px var(--quaternary-color);
+  margin: 8px;
+  min-width: 300px;
+  padding: 16px;
+  text-align: center;
+}
+
+.btn-container {
+  text-align: center;
+}
+
+#food-image {
+  border-radius: 30px;
+  box-shadow: 5px 5px 10px var(--quaternary-color);
+  height: auto;
+  width: 250px;
+}
+
+.drink-section img {
+  border-radius: 30px;
+  box-shadow: 5px 5px 10px var(--quaternary-color);
+  height: auto;
+  width: 250px;
+}
+
+.ingredient-list {
+  text-align: left;
+}
+
+#recipe {
+  text-align: left;
+}
+
+.footer {
+  margin: 16px;
+  padding: 8px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    align-items: center;
+  }
+  
+  .header__title {
+    font-size: 3rem;
+  }
+
+  .card__wrapper {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .main-container {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+  }
+
+  .intro, .tagline{
+    display: block;
+  }
+
+  .card {
+    flex-wrap: wrap;
+    flex: 0 1 30%;
+  }
+}
