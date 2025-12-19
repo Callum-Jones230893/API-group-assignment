@@ -1,0 +1,83 @@
+const apiUrl = "https://jsonfakery.com/movies/random";
+const castDiv = document.getElementById("cast");
+const movieCard = document.getElementById("movie-section");
+const movieDisplay = document.getElementById("movie-button");
+
+const movieBtn = document.querySelector("#movie-button");
+const showCastBtn = document.querySelector("#show-cast-btn");
+const imgContainer = document.querySelector(".img-container");
+const movieResultsDiv = document.querySelector("#movie");
+
+//FUNCTION FOR SHOWING THE MOVIE
+const findMovie = async () => {
+  try {
+    const response = await fetch(apiUrl);
+
+    if (!response.ok) {
+      throw new Error(`Network response was not ok`);
+    }
+
+    const movie = await response.json();
+    console.log(movie.original_title);
+
+    movieCard.innerHTML = ``; //fixed fetching bug with this. content wasn't loading, had to clear the html in between
+    castDiv.innerHTML = ``;
+    imgContainer.innerHTML = ``;
+    showCastBtn.textContent = "Show Cast";
+    showCastBtn.classList.remove("hide");
+    castDiv.classList.add("hide");
+
+    //  MOVIE POSTER
+    const imgURL = movie.poster_path;
+    let imageDisplay = document.createElement("img");
+    imageDisplay.src = imgURL;
+    movieCard.appendChild(imgContainer);
+    imgContainer.appendChild(imageDisplay);
+
+    //  MOVIE TITLE
+    let movieTitle = document.createElement("h2");
+    movieTitle.textContent = movie.original_title;
+    movieCard.appendChild(movieTitle);
+
+    //  MOVIE YEAR
+    let movieYear = document.createElement("p");
+    movieYear.textContent = movie.release_date;
+    movieCard.appendChild(movieYear);
+
+    //  SYNOPSIS
+    let synopsis = document.createElement("p");
+    synopsis.textContent = movie.overview;
+    movieCard.appendChild(synopsis);
+
+    movieCard.appendChild(showCastBtn); //button here so it's underneth the synopsis
+
+    //  CAST BUTTON
+    const castNames = movie.casts.map((cast) => cast.name);
+    let castList = document.createElement("ul");
+    castDiv.appendChild(castList);
+
+    //  FOREACH DO DISPLAY THE CAST IN A LIST
+    castNames.forEach((name) => {
+      let castDisplay = document.createElement("li");
+      castDisplay.textContent = name;
+      castList.appendChild(castDisplay);
+    });
+  } catch (error) {
+    console.log("Error", error);
+    throw error;
+  }
+};
+
+//  CLICK EVENT FOR MOVIE BUTTON
+movieBtn.addEventListener("click", () => {
+  findMovie();
+});
+
+//  CLICK EVENT FOR READ MORE... BUTTON LOGIC
+showCastBtn.onclick = () => {
+  if (castDiv.classList.toggle("hide")) {
+    showCastBtn.textContent = "Show Cast";
+  } else {
+    showCastBtn.textContent = "Hide Cast";
+  }
+};
