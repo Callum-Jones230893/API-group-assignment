@@ -1,3 +1,10 @@
+:root {
+  --primary-color: #64a6bd;
+  --secondary-color: #fa8334;
+  --tertiary-color: #ffffeb;
+  --quaternary-color: #040f0f;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -13,14 +20,7 @@ body {
 }
 
 .footer {
+  background-color: var(--primary-color);
+  color: var(--tertiary-color);
   text-align: center;
-}
-
-#about-us {
-  padding: 16px;
-  text-decoration: none;
-}
-
-#about-us:hover {
-  transform: scale(1.1);
 }
