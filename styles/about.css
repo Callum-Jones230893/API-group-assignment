@@ -1,13 +1,15 @@
-:root {
-  --primary-color: #64a6bd;
-  --secondary-color: #fa8334;
-  --tertiary-color: #ffffeb;
-  --quaternary-color: #040f0f;
+#group-name {
+  color: var(--tertiary-color);
+  text-align: center;
 }
 
-a,
-a:visited,
-a:active {
+#group-info {
+  color: var(--secondary-color);
+}
+
+.icon,
+.icon:visited,
+.icon:active {
   color: var(--secondary-color);
   text-decoration: none;
 }
@@ -17,13 +19,8 @@ a:active {
 }
 
 .icon:hover {
-  color: var(--tertiary-color);
+  color: var(--quinary-color);
   transform: scale(1.1);
-}
-
-.card {
-  margin: 16px;
-  padding: 8px;
 }
 
 .name {
@@ -32,4 +29,29 @@ a:active {
 
 .socials {
   text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .main-container {
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  #group-info {
+    width: 80%;
+  }
+  
+  .card-container {
+    align-items: stretch;
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+  }
+
+  .card {
+    flex-grow: 1;
+    height: auto;
+    width: 40%;
+  }
 }

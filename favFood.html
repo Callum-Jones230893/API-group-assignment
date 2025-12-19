@@ -6,18 +6,23 @@
     <title>Movie Night | Your Favorited Foods</title>
     <script src="./scripts/favFood.js" defer></script>
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/typography.css" />
     <link rel="stylesheet" href="./styles/favFood.css" />
   </head>
   <body>
-    <header class="header">
-      <nav class="navbar">
-        <a href="./index.html">Home</a>
-      </nav>
-    </header>
+  <header class="header">
+    <h1 class="header__title">&#128253; Flick & Feast Roulette &#127871;</h1>
+    <div class="nav-bar">
+      <a href="./index.html">Home</a>
+      <a href="./favoriteDrinks.html">Favorite Drinks</a>
+      <a class="active" href="./favFood.html">Favorite Food</a>
+      <a href="./about.html">About Us</a>
+    </div>
+  </header>
+  <h3 class="tagline">Your favorite foods!</h3>
     <main class="main-container">
-      <h3 class="title">Your Favorited Foods</h3>
       <ul id="fav-list"></ul>
-      <div class="card" id="food-card">
+      <div class="card hide" id="food-card">
         <img id="food-image" />
         <h3 class="card__title" id="food-card__title"></h3>
         <p class="info" id="food-origin"></p>

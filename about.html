@@ -5,15 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Night</title>
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/typography.css" />
     <link rel="stylesheet" href="./styles/about.css" />
     <script src="https://kit.fontawesome.com/547bf76217.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <header></header>
+    <header class="header">
+      <h1 class="header__title">&#128253; Flick & Feast Roulette &#127871;</h1>
+      <div class="nav-bar">
+        <a href="./index.html">Home</a>
+        <a href="./favoriteDrinks.html">Favorite Drinks</a>
+        <a href="./favFood.html">Favorite Food</a>
+        <a class="active" href="./about.html">About Us</a>
+      </div>
+    </header>
+    <h3 class="tagline">About us</h3>
     <main class="main-container">
-      <h2 class="section-title">About Us</h2>
       <h3 id="group-name">TriContinent Trio</h3>
-      <p class="info">
+      <p id="group-info">
         We are a group of three students from Futuregames Stockholm's Frontend Developer program, exploring the world of
         web development. For this project, we fetched data from three different APIs to create an interactive movie
         night idea generator. We also focused on building a responsive design to reflect modern UX best practices and

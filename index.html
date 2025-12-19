@@ -1,61 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Movie Night</title>
-  <script src="./scripts/drink.js" defer></script>
-  <script src="./scripts/food.js" defer></script>
-  <script src="./scripts/movie.js" defer></script>
-  <link rel="stylesheet" href="./styles/style.css">
-</head>
-<body>
-  <header class="header">
-    <h1 class="header__title">&#128253; Flick & Feast Roulette &#127871;</h1>
-    <div class="nav-bar">
-      <p><a class="active" href="./index.html">Home</a>
-      <p><a href="./favoriteDrinks.html">Favorite Drinks</a></p>
-      <p><a href="./favFood">Favorite Food</a></p>
-      <p><a href="./about.html">About Us</a></p>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Night</title>
+    <script src="./scripts/drink.js" defer></script>
+    <script src="./scripts/food.js" defer></script>
+    <script src="./scripts/movie.js" defer></script>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/typography.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header__title">&#128253; Flick & Feast Roulette &#127871;</h1>
+      <div class="nav-bar">
+        <a class="active" href="./index.html">Home</a>
+        <a href="./favoriteDrinks.html">Favorite Drinks</a>
+        <a href="./favFood.html">Favorite Food</a>
+        <a href="./about.html">About Us</a>
+      </div>
+    </header>
     <h4 class="intro">
       Need help planning a movie night? We got you. Pick a food, a drink, and a movie with this randomizer for a
       decision-fatigue-free night in.
     </h4>
     <h3 class="tagline">Movie night - decided!</h3>
-  </header>
-  <div class="card__wrapper">
-    <button class="button" id="movie-button">Find a movie!</button>
-    
-    <div class="card" id="food-card">
-      <div id="btn-container">
-        <button class="button" id="food-btn">Find a random food!</button>
+    <main class="main-container">
+      <div class="card">
+        <div id="btn-container">
+          <button class="button" id="movie-button">Find a movie!</button>
+        </div>
+        <div id="movie-section">
+          <div class="img-container" id="movie"></div>
+          <button class="hide" id="show-cast-btn">Show cast</button>
+        </div>
+        <div class="hide cast-list" id="cast"></div>
       </div>
-      <div class="search-bar">
-        <select name="category" id="categoryList">
+      <div class="card" id="food-card">
+        <div id="btn-container">
+          <button class="button" id="food-btn">Find a random food!</button>
+        </div>
+        <div class="search-bar">
+          <select name="category" id="categoryList">
+            <option value="">Choose a category</option>
+          </select>
+        </div>
+        <img id="food-image" />
+        <h3 class="card__title" id="food-card__title"></h3>
+        <p class="info" id="food-origin"></p>
+        <button class="info hide" id="food__read-more-btn">Read more</button>
+        <button class="info hide" id="fav-btn">Add to favorites</button>
+        <div class="info hide" id="recipe"></div>
+      </div>
+      <div class="card drink-section">
+        <div id="btn-container">
+          <button class="button" id="drink-button">Find a random drink!</button>
+        </div>
+        <select name="category" id="ingredient-btn">
           <option value="">Choose a category</option>
         </select>
+        <div class="results" id="drink"></div>
+        <button class="hide" id="read-more-btn">Read more</button>
+        <button class="hide" id="fav-drink-btn">Add to Favorites</button>
+        <div class="hide ingredient-list" id="ingredient"></div>
       </div>
-      <img id="food-image" />
-      <h3 class="card__title" id="food-card__title"></h3>
-      <p class="info" id="food-origin"></p>
-      <button class="info hide" id="food__read-more-btn">Read more</button>
-      <button class="info hide" id="fav-btn">Add to favorites</button>
-      <div class="info hide" id="recipe"></div>
-    </div>
-
-    <div class="card drink-section">
-      <div id="btn-container">
-        <button class="button" id="drink-button">Find a random drink!</button>
-      </div>
-      <select name="category" id="ingredient-btn">
-        <option value="">Choose a category</option>
-      </select>
-      <div class="results" id="drink"></div>
-      <button class="hide" id="read-more-btn">Read more</button>
-      <button class="hide" id="fav-drink-btn">Add to Favorites</button>
-      <div class="hide ingredient-list" id="ingredient"></div>
-    </div>
-  </div>
-</body>
+    </main>
+    <footer class="footer">
+      <h4 class="copyright">&copy; TriContinent Trio 2025</h4>
+    </footer>
+  </body>
 </html>

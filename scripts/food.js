@@ -153,7 +153,14 @@ const displayFood = meal => {
 
 const readMoreBtn = document.querySelector("#food__read-more-btn");
 readMoreBtn.onclick = () => {
-  document.querySelector("#recipe").classList.toggle("hide");
+  const recipeSection = document.querySelector("#recipe");
+  recipeSection.classList.toggle("hide");
+
+  if (recipeSection.classList.contains("hide")) {
+    readMoreBtn.textContent = "Read more";
+  } else {
+    readMoreBtn.textContent = "Read less";
+  }
 };
 
 const selectCategory = document.querySelector("#categoryList");

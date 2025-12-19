@@ -1,3 +1,21 @@
 #fav-list {
+  color: var(--tertiary-color);
   list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .main-container {
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .card {
+    flex-grow: 1;
+    height: auto;
+    width: 40%;
+  }
 }
