@@ -40,10 +40,10 @@ saveFavorite(favoriteDrink);
 
 //populating the list
 window.onload = async function () {
-  const favoriteList = getFavoritesDrink();
-
-  if (favoriteList.length === 0) {
-    favorited.innerHTML = "<li>No favorite drinks yet</li>";
+  if (favorited) {
+    const favoriteList = getFavoritesDrink();
+    if (favoriteList.length === 0) {
+      favorited.innerHTML = "<li>No favorite drinks yet</li>";
     return;
   }
 
@@ -53,20 +53,21 @@ window.onload = async function () {
       drinkInfo.classList.add(`${drink.id}`);
       drinkInfo.textContent = drink.name;
       drinkInfo.style.cursor = "pointer";
-      favorited?.appendChild(drinkInfo)
+      favorited?.appendChild(drinkInfo);
 
       drinkInfo.addEventListener("click", (e) => {
         if (currentFavorite === drink.id) {
-        section.classList.add("hide");
-        currentFavorite = null;
-      } else {
-        section.classList.remove("hide")
-        favoritedDrink(drink.id);
-        currentFavorite = drink.id;
-        }
-      })
-    })
-  } 
+          section.classList.add("hide");
+          currentFavorite = null;
+        } else {
+          section.classList.remove("hide")
+          favoritedDrink(drink.id);
+          currentFavorite = drink.id;
+          }
+        })
+     })
+    } 
+  }
   try {
     const response = await fetch(listUrl);
 
@@ -143,7 +144,7 @@ const searchIngredient = async () => {
 
       results.innerHTML = `
       <img src="${drink.strDrinkThumb}">
-      <h3>${drink.strDrink}</h2>
+      <h3>${drink.strDrink}</h3>
       <p>${drink.strCategory}, ${drink.strAlcoholic}</p>`
 
       printInfo(drink);
@@ -195,7 +196,7 @@ const favoritedDrink = async (id) => {
 
     results.innerHTML = `
     <img src="${drink.strDrinkThumb}">
-    <h3>${drink.strDrink}</h2>
+    <h3>${drink.strDrink}</h3>
     <p>${drink.strCategory}, ${drink.strAlcoholic}</p>`
 
     printInfo(drink);
