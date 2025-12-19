@@ -24,37 +24,38 @@
     </h4>
     <h3 class="tagline">Movie night - decided!</h3>
   </header>
-
-  <button class="button" id="movie-button">Find a movie!</button>
-  
-  <div class="card" id="food-card">
-    <div id="btn-container">
-      <button class="button" id="food-btn">Find a random food!</button>
+  <div class="card__wrapper">
+    <button class="button" id="movie-button">Find a movie!</button>
+    
+    <div class="card" id="food-card">
+      <div id="btn-container">
+        <button class="button" id="food-btn">Find a random food!</button>
+      </div>
+      <div class="search-bar">
+        <select name="category" id="categoryList">
+          <option value="">Choose a category</option>
+        </select>
+      </div>
+      <img id="food-image" />
+      <h3 class="card__title" id="food-card__title"></h3>
+      <p class="info" id="food-origin"></p>
+      <button class="info hide" id="food__read-more-btn">Read more</button>
+      <button class="info hide" id="fav-btn">Add to favorites</button>
+      <div class="info hide" id="recipe"></div>
     </div>
-    <div class="search-bar">
-      <select name="category" id="categoryList">
+
+    <div class="card drink-section">
+      <div id="btn-container">
+        <button class="button" id="drink-button">Find a random drink!</button>
+      </div>
+      <select name="category" id="ingredient-btn">
         <option value="">Choose a category</option>
       </select>
+      <div class="results" id="drink"></div>
+      <button class="hide" id="read-more-btn">Read more</button>
+      <button class="hide" id="fav-drink-btn">Add to Favorites</button>
+      <div class="hide ingredient-list" id="ingredient"></div>
     </div>
-    <img id="food-image" />
-    <h3 class="card__title" id="food-card__title"></h3>
-    <p class="info" id="food-origin"></p>
-    <button class="info hide" id="food__read-more-btn">Read more</button>
-    <button class="info hide" id="fav-btn">Add to favorites</button>
-    <div class="info hide" id="recipe"></div>
-  </div>
-
-  <div class="card drink-section">
-    <div id="btn-container">
-      <button class="button" id="drink-button">Find a random drink!</button>
-    </div>
-    <select name="category" id="ingredient-btn">
-      <option value="">Choose a category</option>
-    </select>
-    <div class="results" id="drink"></div>
-    <button class="hide" id="read-more-btn">Read more</button>
-    <button class="hide" id="fav-drink-btn">Add to Favorites</button>
-    <div class="hide ingredient-list" id="ingredient"></div>
   </div>
 </body>
 </html>
