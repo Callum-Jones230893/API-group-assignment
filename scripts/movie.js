@@ -1,9 +1,9 @@
 const apiUrl = "https://jsonfakery.com/movies/random";
 const castDiv = document.getElementById("cast");
 const movieCard = document.getElementById("movie-section");
-const movieDisplay = document.getElementById("movie-btn");
+const movieDisplay = document.getElementById("movie-button");
 
-const movieBtn = document.querySelector("#movie-btn");
+const movieBtn = document.querySelector("#movie-button");
 const showCastBtn = document.querySelector("#show-cast-btn");
 const imgContainer = document.querySelector(".img-container");
 const movieResultsDiv = document.querySelector("#movie");
@@ -27,22 +27,22 @@ const findMovie = async () => {
     showCastBtn.classList.remove("hide");
     castDiv.classList.add("hide");
 
-    //  MOVIE TITLE
-    let movieTitle = document.createElement("h2");
-    movieTitle.textContent = movie.original_title;
-    movieCard.appendChild(movieTitle);
-
-    //  MOVIE YEAR
-    let movieYear = document.createElement("h3");
-    movieYear.textContent = movie.release_date;
-    movieCard.appendChild(movieYear);
-
     //  MOVIE POSTER
     const imgURL = movie.poster_path;
     let imageDisplay = document.createElement("img");
     imageDisplay.src = imgURL;
     movieCard.appendChild(imgContainer);
     imgContainer.appendChild(imageDisplay);
+
+    //  MOVIE TITLE
+    let movieTitle = document.createElement("h2");
+    movieTitle.textContent = movie.original_title;
+    movieCard.appendChild(movieTitle);
+
+    //  MOVIE YEAR
+    let movieYear = document.createElement("p");
+    movieYear.textContent = movie.release_date;
+    movieCard.appendChild(movieYear);
 
     //  SYNOPSIS
     let synopsis = document.createElement("p");
