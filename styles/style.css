@@ -90,22 +90,15 @@ a:hover {
   text-align: center;
 }
 
-li {
-  list-style: none;
-}
-
-#food-image {
+img {
   border-radius: 30px;
   box-shadow: 5px 5px 10px var(--quaternary-color);
   height: auto;
   width: 250px;
 }
 
-.drink-section img {
-  border-radius: 30px;
-  box-shadow: 5px 5px 10px var(--quaternary-color);
-  height: auto;
-  width: 250px;
+.ingredient-list, #cast {
+  text-align: left;
 }
 
 #recipe {
@@ -122,16 +115,21 @@ li {
   body {
     align-items: center;
   }
+  
+  .header__title {
+    font-size: 3rem;
+  }
+
+  .card__wrapper {
+    display: flex;
+    justify-content: space-evenly;
+  }
 
   .main-container {
     align-items: flex-start;
     display: flex;
     justify-content: space-around;
     width: 80%;
-  }
-  
-  .header__title {
-    font-size: 3rem;
   }
 
   .intro, .tagline{
