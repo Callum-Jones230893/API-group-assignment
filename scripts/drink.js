@@ -165,12 +165,6 @@ drinkBtn.addEventListener(`click`, () => {
 
 readMoreBtnDrink.addEventListener("click", () => {
   ingredientDiv.classList.toggle("hide");
-
-  if (ingredientDiv.classList.contains("hide")) {
-    readMoreBtnDrink.textContent = "Read more";
-  } else {
-    readMoreBtnDrink.textContent = "Read less";
-  }
 });
 
 function favorite(drink) {
