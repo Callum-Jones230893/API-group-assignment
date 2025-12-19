@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
   <script src="./scripts/movie.js" defer></script>
   <link rel="stylesheet" href="./styles/style.css">
 </head>
+
 <body>
   <header class="header">
     <h1 class="header__title">&#128253; Flick & Feast Roulette &#127871;</h1>
@@ -25,8 +27,16 @@
     <h3 class="tagline">Movie night - decided!</h3>
   </header>
   <div class="card__wrapper">
-    <button class="button" id="movie-button">Find a movie!</button>
-    
+    <div class="card">
+      <div id="btn-container">
+        <button class="button" id="movie-button">Find a movie!</button>
+      </div>
+      <div id="movie-section">
+        <div class="img-container" id="movie"></div>
+        <button class="hide" id="show-cast-btn">Show cast</button>
+      </div>
+      <div class="hide cast-list" id="cast"></div>
+    </div>
     <div class="card" id="food-card">
       <div id="btn-container">
         <button class="button" id="food-btn">Find a random food!</button>
@@ -58,4 +68,5 @@
     </div>
   </div>
 </body>
+
 </html>
