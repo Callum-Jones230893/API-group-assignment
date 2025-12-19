@@ -1,15 +1,17 @@
-:root {
-  --primary-color: #64a6bd;
-  --secondary-color: #fa8334;
-  --tertiary-color: #ffffeb;
-  --quaternary-color: #040f0f;
+.drink-section.card {
+  background-color: var(--tertiary-color);
+  border-radius: 35px;
+  box-shadow: 5px 5px 10px var(--quaternary-color);
+  margin: 8px;
+  min-height: 200px;
+  padding: 16px;
+  text-align: center;
 }
 
 .favorited {
   list-style-type: none;
   padding: 0;
 }
-
 
 li {
   font-weight: bold;
@@ -21,8 +23,14 @@ li:hover {
 
 .ingredient-info li {
   font-weight: normal;
-}  
+}
 
 .ingredient-info li:hover {
   color: black;
+}
+
+@media screen and (min-width: 768px) {
+  .drink-section.card {
+    width: 40%;
+  }
 }

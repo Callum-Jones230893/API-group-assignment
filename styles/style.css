@@ -47,11 +47,18 @@ button:hover {
 
 .nav-bar {
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+  margin: 8px;
+  text-align: center;
+}
+
+.nav-bar a{
+  padding: 8px;
 }
 
 .header__title {
-  font-size: 2rem;
+  font-size: 1.6rem;
+  padding: 16px;
 }
 
 .active {
@@ -62,6 +69,8 @@ button:hover {
 .tagline {
   color: var(--quinary-color);
   margin: 8px;
+  padding: 0 8px;
+  text-align: center;
 }
 
 a {
@@ -76,6 +85,7 @@ a:hover {
 
 .main-container {
   flex-grow: 1;
+  margin: 8px;
   padding: 16px;
 }
 
@@ -88,6 +98,7 @@ a:hover {
   border-radius: 35px;
   box-shadow: 5px 5px 10px var(--quaternary-color);
   margin: 8px;
+  min-height: 200px;
   padding: 16px;
   text-align: center;
 }
@@ -135,6 +146,12 @@ img {
 
   .header__title {
     font-size: 3rem;
+    margin-bottom: 0;
+  }
+
+  .nav-bar {
+    flex-direction: row;
+    gap: 2rem;
   }
 
   .main-container {
@@ -151,6 +168,5 @@ img {
 
   .card {
     flex: 0 0 30%;
-    min-height: 200px;
   }
 }
