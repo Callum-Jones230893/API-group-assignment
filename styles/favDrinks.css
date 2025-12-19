@@ -13,20 +13,9 @@
   padding: 0;
 }
 
-li {
-  font-weight: bold;
-}
-
 li:hover {
   color: var(--secondary-color);
-}
-
-.ingredient-info li {
-  font-weight: normal;
-}
-
-.ingredient-info li:hover {
-  color: black;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {

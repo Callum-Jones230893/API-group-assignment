@@ -1,11 +1,3 @@
-:root {
-  --primary-color: #070c18;
-  --secondary-color: #e5e7eb;
-  --tertiary-color: #ef626c;
-  --quaternary-color: #c3434c;
-  --quinary-color: #38bdf8;
-}
-
 #fav-list {
   color: var(--tertiary-color);
   list-style-type: none;
